@@ -1,409 +1,564 @@
-
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tifre — Offerte 2026/8210 — Patrick Baeyens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--blue:#00AEEF;--dark:#1E2A35;--mid:#4A6274;--light:#D6F0FA;--orange:#FF6B35;--grey:#8FA3B1;--off:#F4FAFD}
-body{font-family:var(--font-sans);color:var(--color-text-primary);background:transparent}
+:root{
+  --blue:#00B4D8;
+  --blue-dark:#0090b0;
+  --blue-light:#e6f8fc;
+  --red:#E63030;
+  --dark:#1a2530;
+  --mid:#4a5568;
+  --light:#f0fbfd;
+  --grey:#718096;
+  --border:#e2e8f0;
+  --white:#ffffff;
+  --bg:#f8fafc;
+  --radius:12px;
+  --radius-lg:20px;
+}
+body{font-family:'Nunito',sans-serif;background:var(--white);color:var(--dark);font-size:15px;line-height:1.65;overflow-x:hidden}
 
-nav{background:var(--dark);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:52px;position:sticky;top:0;z-index:100}
-.nav-brand{color:#fff;font-size:18px;font-weight:500;display:flex;align-items:center;gap:8px}
-.nav-dot{width:8px;height:8px;background:var(--orange);border-radius:50%;display:inline-block}
-.nav-links{display:flex;gap:0}
-.nav-links a{color:rgba(255,255,255,0.65);font-size:13px;padding:0 14px;height:52px;display:flex;align-items:center;cursor:pointer;transition:color .2s;border-bottom:2px solid transparent;text-decoration:none}
-.nav-links a:hover,.nav-links a.active{color:#fff;border-bottom-color:var(--blue)}
+/* ── TOPBAR ── */
+.topbar{background:var(--blue);padding:8px 2rem;display:flex;justify-content:space-between;align-items:center}
+.topbar span{font-size:12px;color:rgba(255,255,255,0.9)}
+.topbar strong{color:#fff}
 
-.hero{background:var(--dark);padding:3.5rem 2rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-.hero-left{}
-.hero-tag{font-size:11px;font-weight:500;color:var(--blue);letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem}
-.hero-title{font-size:36px;font-weight:500;color:#fff;line-height:1.2;margin-bottom:1rem}
-.hero-title span{color:var(--blue)}
-.hero-sub{font-size:14px;color:var(--grey);line-height:1.7;margin-bottom:1.5rem}
-.hero-client{font-size:13px;color:rgba(255,255,255,0.5);border-top:1px solid rgba(255,255,255,0.1);padding-top:1rem;display:flex;gap:2rem}
-.hero-client b{color:#fff;display:block;font-size:14px}
+/* ── NAV ── */
+nav{background:var(--white);padding:0 2.5rem;height:70px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 16px rgba(0,0,0,0.06);position:sticky;top:0;z-index:200}
+.logo{display:flex;align-items:center;gap:4px}
+.logo-text{font-size:32px;font-weight:800;color:var(--blue);letter-spacing:-1px;line-height:1}
+.logo-dot{width:10px;height:10px;background:var(--red);border-radius:50%;margin-left:2px;margin-bottom:14px;flex-shrink:0}
+.nav-links{display:flex;gap:0;align-items:center}
+.nav-links a{font-size:14px;font-weight:600;color:var(--mid);padding:0 16px;height:70px;display:flex;align-items:center;text-decoration:none;border-bottom:3px solid transparent;transition:all .2s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--blue);border-bottom-color:var(--blue)}
+.nav-cta{background:var(--blue);color:var(--white)!important;border-radius:50px!important;padding:10px 24px!important;height:auto!important;border-bottom:none!important;font-size:13px!important;margin-left:12px}
+.nav-cta:hover{background:var(--blue-dark)!important;color:#fff!important}
+@media(max-width:700px){.nav-links{display:none}}
 
-.hero-right{}
-.price-card{background:var(--orange);border-radius:12px;padding:1.5rem;margin-bottom:12px}
-.price-label{font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
-.price-big{font-size:42px;font-weight:500;color:#fff;line-height:1}
-.price-sub{font-size:13px;color:rgba(255,255,255,0.8);margin-top:4px}
-.saving-badge{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between}
-.saving-label{font-size:12px;color:rgba(255,255,255,0.6)}
-.saving-val{font-size:16px;font-weight:500;color:#fff}
-.deadline{font-size:11px;color:rgba(255,255,255,0.4);margin-top:8px;text-align:right}
+/* ── PROGRESS ── */
+#prog{position:fixed;top:70px;left:0;height:3px;background:var(--blue);width:0;z-index:300;transition:width .1s;border-radius:0 3px 3px 0}
 
-.section{padding:2rem;border-bottom:1px solid var(--color-border-tertiary)}
-.section-title{font-size:20px;font-weight:500;margin-bottom:.25rem}
-.section-sub{font-size:13px;color:var(--color-text-secondary);margin-bottom:1.5rem}
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#f0fbfd 0%,#e6f8fc 50%,#fff 100%);padding:4rem 2.5rem 3.5rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;background:var(--blue);opacity:.05;border-radius:50%}
+.hero::after{content:'';position:absolute;right:100px;bottom:-150px;width:300px;height:300px;background:var(--red);opacity:.04;border-radius:50%}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:3.5rem;align-items:center;position:relative;z-index:1}
+@media(max-width:800px){.hero-inner{grid-template-columns:1fr;gap:2rem}}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1.5px solid var(--blue);border-radius:50px;padding:5px 14px;font-size:12px;font-weight:700;color:var(--blue);margin-bottom:1.25rem;letter-spacing:.5px}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%;flex-shrink:0}
+.hero-h1{font-size:40px;font-weight:800;line-height:1.1;margin-bottom:1rem;color:var(--dark)}
+.hero-h1 .accent{color:var(--blue)}
+.hero-sub{font-size:15px;color:var(--grey);line-height:1.75;margin-bottom:2rem}
+.hero-meta{display:flex;gap:2.5rem;flex-wrap:wrap;border-top:2px solid var(--border);padding-top:1.25rem}
+.hero-meta-item b{display:block;font-size:14px;font-weight:700;color:var(--dark);margin-bottom:2px}
+.hero-meta-item span{font-size:13px;color:var(--grey)}
 
-.disciplines-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.discipline-card{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1rem;border-top:3px solid var(--blue)}
-.disc-num{font-size:11px;font-weight:500;color:var(--blue);letter-spacing:2px;margin-bottom:6px}
-.disc-title{font-size:14px;font-weight:500;margin-bottom:6px}
-.disc-body{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+.price-card{background:var(--white);border-radius:var(--radius-lg);box-shadow:0 8px 40px rgba(0,180,216,.15);padding:2rem;border:2px solid var(--blue-light)}
+.pc-eyebrow{font-size:11px;font-weight:700;color:var(--blue);letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem}
+.pc-price{font-size:48px;font-weight:800;color:var(--dark);letter-spacing:-2px;line-height:1;margin-bottom:.3rem}
+.pc-price span{font-size:18px;color:var(--grey);font-weight:400;letter-spacing:0}
+.pc-incl{font-size:13px;color:var(--grey);margin-bottom:1.25rem}
+.saving-row{background:var(--light);border-radius:10px;padding:1rem 1.25rem;display:flex;justify-content:space-between;margin-bottom:1rem}
+.sr-block .sr-l{font-size:11px;color:var(--grey);margin-bottom:3px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.sr-block .sr-v{font-size:17px;font-weight:800;color:var(--dark)}
+.sr-block.highlight .sr-v{color:var(--blue)}
+.deadline-pill{background:#fff8e1;border:1.5px solid #ffd54f;border-radius:50px;padding:8px 16px;font-size:12px;font-weight:700;color:#f57f17;display:flex;align-items:center;gap:6px}
 
-.price-table{width:100%;border-collapse:collapse;font-size:13px}
-.price-table th{text-align:left;font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:1.5px;padding:8px 12px;border-bottom:1.5px solid var(--blue)}
-.price-table th:not(:first-child){text-align:right}
-.price-table td{padding:8px 12px;border-bottom:0.5px solid var(--color-border-tertiary)}
-.price-table td:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
-.price-table tr:nth-child(even) td{background:var(--color-background-secondary)}
-.price-table tr.highlight td{background:var(--color-background-info);color:var(--color-text-info);font-weight:500}
-.price-table tr.discount td{color:var(--color-text-success)}
-.price-table tr.total td{font-weight:500;font-size:14px;border-top:2px solid var(--color-border-primary);border-bottom:none}
-.price-table tr.total-main td{font-size:15px;font-weight:500;background:var(--dark);color:#fff;border-bottom:none}
-.price-table tr.total-main td:last-child{color:var(--orange)}
+/* ── SECTIONS ── */
+.section{padding:3.5rem 2.5rem;border-bottom:1px solid var(--border)}
+.section-inner{max-width:1100px;margin:0 auto}
+@media(max-width:700px){.section{padding:2rem 1.25rem}}
+.sec-eyebrow{font-size:11px;font-weight:700;color:var(--blue);letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
+.sec-eyebrow::before{content:'';width:20px;height:3px;background:var(--blue);border-radius:2px;display:inline-block}
+.sec-h2{font-size:28px;font-weight:800;color:var(--dark);margin-bottom:.4rem}
+.sec-sub{font-size:14px;color:var(--grey);margin-bottom:2rem}
 
-.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.bar-label{font-size:12px;color:var(--color-text-secondary);width:200px;flex-shrink:0}
-.bar-track{flex:1;height:20px;background:var(--color-background-secondary);border-radius:4px;overflow:hidden}
-.bar-fill{height:100%;border-radius:4px;transition:width .4s}
-.bar-val{font-size:12px;font-weight:500;width:70px;text-align:right;flex-shrink:0}
+/* ── TILES ── */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.tile{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.4rem;cursor:pointer;transition:all .2s;position:relative;user-select:none}
+.tile:hover{border-color:var(--blue);box-shadow:0 4px 20px rgba(0,180,216,.12);transform:translateY(-2px)}
+.tile.open{border-color:var(--blue);background:var(--blue-light)}
+.tile-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.75rem}
+.tile-num{background:var(--blue);color:#fff;font-size:11px;font-weight:800;padding:3px 10px;border-radius:50px;letter-spacing:.5px}
+.tile.accent .tile-num{background:var(--red)}
+.tile-chevron{width:24px;height:24px;border:2px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--grey);font-size:12px;transition:all .2s;flex-shrink:0}
+.tile.open .tile-chevron{background:var(--blue);border-color:var(--blue);color:#fff;transform:rotate(90deg)}
+.tile-title{font-size:15px;font-weight:800;color:var(--dark);margin-bottom:.4rem}
+.tile-preview{font-size:12px;color:var(--grey);line-height:1.6;margin-bottom:.75rem}
+.tile-price{font-size:14px;font-weight:800;color:var(--blue)}
+.tile.accent .tile-price{color:var(--red)}
+.tile-price small{font-size:11px;font-weight:400;color:var(--grey)}
 
-.phase-list{display:flex;flex-direction:column;gap:0}
-.phase-row{display:grid;grid-template-columns:56px 1fr auto auto;align-items:center;gap:1rem;padding:14px 16px;border-bottom:0.5px solid var(--color-border-tertiary)}
+/* ── DRAWER ── */
+.drawer{display:none;grid-column:1/-1;background:var(--white);border:2px solid var(--blue);border-radius:var(--radius-lg);padding:2rem;margin-top:4px;animation:fadeSlide .22s ease}
+.drawer.open{display:block}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.drawer-header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid var(--border)}
+.drawer-title{font-size:19px;font-weight:800;color:var(--dark)}
+.drawer-badge{background:var(--blue);color:#fff;font-size:12px;font-weight:800;padding:4px 14px;border-radius:50px}
+.drawer-badge.red{background:var(--red)}
+.drawer-btw{font-size:12px;color:var(--grey);background:var(--bg);padding:4px 10px;border-radius:50px;border:1px solid var(--border)}
+.drawer-body{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:600px){.drawer-body{grid-template-columns:1fr}}
+.drawer-col h4{font-size:11px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.75rem;display:flex;align-items:center;gap:6px}
+.drawer-col h4::after{content:'';flex:1;height:2px;background:var(--blue-light);border-radius:1px}
+.drawer-col h4.red-head{color:var(--mid)}
+.drawer-col h4.red-head::after{background:var(--border)}
+.drawer-list{list-style:none}
+.drawer-list li{font-size:13px;color:var(--dark);padding:7px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.drawer-list li:last-child{border-bottom:none}
+.drawer-list li span{font-size:12px;color:var(--grey);text-align:right;flex-shrink:0;max-width:45%}
+.drawer-list li.none{color:var(--grey);font-style:italic}
+.drawer-note{background:var(--light);border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:.85rem 1.1rem;font-size:13px;color:var(--mid);line-height:1.65;margin-top:1.5rem}
+.drawer-note.warn{border-left-color:#ffd54f;background:#fffde7}
+
+/* ── PRICE SECTION ── */
+.tab-btns{display:flex;gap:8px;margin-bottom:2rem;flex-wrap:wrap}
+.tbtn{background:var(--white);border:2px solid var(--border);border-radius:50px;padding:8px 22px;font-size:13px;font-weight:700;color:var(--mid);cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif}
+.tbtn:hover{border-color:var(--blue);color:var(--blue)}
+.tbtn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.bar-row{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.bar-lbl{font-size:13px;color:var(--mid);width:240px;flex-shrink:0;font-weight:600}
+.bar-track{flex:1;height:28px;background:var(--light);border-radius:50px;overflow:hidden}
+.bar-fill{height:100%;border-radius:50px;transition:width .7s cubic-bezier(.4,0,.2,1)}
+.bar-val{font-size:13px;font-weight:800;width:80px;text-align:right;flex-shrink:0;color:var(--dark)}
+
+/* ── TABLE ── */
+.ptable{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;border:2px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.ptable thead tr{background:var(--blue)}
+.ptable th{text-align:left;font-size:11px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1.5px;padding:12px 16px}
+.ptable th:not(:first-child){text-align:right}
+.ptable td{padding:10px 16px;border-bottom:1px solid var(--border)}
+.ptable td:not(:first-child){text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.ptable tr:nth-child(even) td{background:var(--bg)}
+.ptable tr.discount td{color:var(--blue);font-weight:800}
+.ptable tr.tot td{background:var(--light);font-weight:700;border-top:2px solid var(--border)}
+.ptable tr.tot-main td{background:var(--dark);color:#fff;font-size:15px;font-weight:800;border:none;padding:14px 16px}
+.ptable tr.tot-main td:last-child{color:var(--blue)}
+
+/* ── PHASES ── */
+.phase-wrap{border:2px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.phase-row{display:grid;grid-template-columns:58px 1fr auto;align-items:center;gap:1.25rem;padding:16px 20px;border-bottom:1px solid var(--border);transition:background .15s;cursor:default}
 .phase-row:last-child{border-bottom:none}
-.phase-num{width:40px;height:40px;border-radius:8px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500}
-.phase-name{font-size:14px;font-weight:500}
-.phase-desc{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
-.phase-amt{font-size:16px;font-weight:500;text-align:right;white-space:nowrap}
-.phase-pct{font-size:12px;color:var(--color-text-secondary);text-align:right}
+.phase-row:hover{background:var(--light)}
+.ph-num{width:42px;height:42px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800}
+.ph-num.first{background:var(--red)}
+.ph-name{font-size:14px;font-weight:800;color:var(--dark)}
+.ph-desc{font-size:12px;color:var(--grey);margin-top:2px}
+.ph-right{text-align:right}
+.ph-amt{font-size:16px;font-weight:800;color:var(--dark)}
+.ph-pct{font-size:12px;color:var(--grey)}
+.phase-footer{background:var(--blue);padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.phase-footer span{font-size:13px;color:rgba(255,255,255,.8);font-weight:600}
+.phase-footer strong{font-size:17px;font-weight:800;color:#fff}
 
-.usp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.usp-card{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1.25rem}
-.usp-icon{width:36px;height:36px;border-radius:8px;background:var(--color-background-info);display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;font-size:16px}
-.usp-title{font-size:14px;font-weight:500;margin-bottom:6px}
-.usp-body{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+/* ── USP ── */
+.usp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.usp-card{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:all .2s}
+.usp-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,180,216,.1)}
+.usp-ico{width:48px;height:48px;background:var(--light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:1rem}
+.usp-t{font-size:15px;font-weight:800;color:var(--dark);margin-bottom:.4rem}
+.usp-b{font-size:13px;color:var(--grey);line-height:1.65}
 
-.contact-block{background:var(--dark);border-radius:12px;padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-.contact-name{font-size:18px;font-weight:500;color:#fff;margin-bottom:4px}
-.contact-role{font-size:13px;color:var(--grey);margin-bottom:1rem}
-.contact-item{font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px}
-.contact-item b{color:#fff}
-.steps-list{display:flex;flex-direction:column;gap:10px}
-.step-row{display:flex;align-items:flex-start;gap:12px}
-.step-num{width:28px;height:28px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#fff}
-.step-num.s1{background:var(--orange)}
-.step-num.s2,.step-num.s3,.step-num.s4{background:var(--blue)}
-.step-text{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6;padding-top:4px}
-.step-text b{color:#fff}
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:650px){.contact-grid{grid-template-columns:1fr}}
+.contact-card{background:var(--dark);border-radius:var(--radius-lg);padding:2rem}
+.contact-name{font-size:20px;font-weight:800;color:#fff;margin-bottom:3px}
+.contact-role{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:1.5rem}
+.contact-item{font-size:14px;color:rgba(255,255,255,.7);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.contact-item strong{color:#fff}
+.steps-card{background:var(--light);border-radius:var(--radius-lg);padding:2rem;border:2px solid var(--blue-light)}
+.steps-title{font-size:15px;font-weight:800;color:var(--dark);margin-bottom:1.25rem}
+.step-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:1.1rem}
+.step-row:last-child{margin-bottom:0}
+.step-n{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;margin-top:2px}
+.step-t{font-size:14px;color:var(--mid);line-height:1.6}
+.step-t strong{color:var(--dark);display:block;margin-bottom:1px;font-weight:800}
 
-.tabs{display:flex;gap:0;border-bottom:1px solid var(--color-border-tertiary);margin-bottom:1.5rem}
-.tab{padding:10px 18px;font-size:13px;cursor:pointer;color:var(--color-text-secondary);border-bottom:2px solid transparent;transition:all .2s}
-.tab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:500}
-.tab-panel{display:none}
-.tab-panel.active{display:block}
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:2rem 2.5rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+footer .brand{display:flex;align-items:center;gap:4px}
+footer .brand-t{font-size:24px;font-weight:800;color:var(--blue);letter-spacing:-1px}
+footer .brand-d{width:7px;height:7px;background:var(--red);border-radius:50%;margin-bottom:10px}
+.footer-info{font-size:12px;color:rgba(255,255,255,.4);line-height:1.7}
+.footer-info strong{color:rgba(255,255,255,.7)}
 </style>
+</head>
+<body>
 
+<div id="prog"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span>Offerte 2026/8210 &nbsp;·&nbsp; Patrick Baeyens &nbsp;·&nbsp; Eikenlaan 117, Belsele</span>
+  <span><strong>Geldig t.e.m. 31 maart 2026</strong></span>
+</div>
+
+<!-- NAV -->
 <nav>
-  <div class="nav-brand">TIFRE <span class="nav-dot"></span></div>
+  <div class="logo">
+    <span class="logo-text">Tifre</span>
+    <span class="logo-dot"></span>
+  </div>
   <div class="nav-links">
-    <a href="#overview" onclick="scrollTo('overview')" class="active">Overzicht</a>
-    <a href="#scope" onclick="scrollTo('scope')">Werken</a>
-    <a href="#pricing" onclick="scrollTo('pricing')">Prijs</a>
-    <a href="#payment" onclick="scrollTo('payment')">Betaling</a>
-    <a href="#why" onclick="scrollTo('why')">Waarom Tifre</a>
-    <a href="#contact" onclick="scrollTo('contact')">Contact</a>
+    <a href="#overview" class="active">Overzicht</a>
+    <a href="#scope">Werken</a>
+    <a href="#pricing">Prijs</a>
+    <a href="#payment">Betaling</a>
+    <a href="#why">Waarom Tifre</a>
+    <a href="#contact" class="nav-cta">Contact</a>
   </div>
 </nav>
 
+<!-- HERO -->
 <div class="hero" id="overview">
-  <div class="hero-left">
-    <div class="hero-tag">Offerte 2026 / 8210 &nbsp;·&nbsp; 16 maart 2026</div>
-    <h1 class="hero-title">Uw droomwoning.<br><span>Van A tot Z.</span></h1>
-    <p class="hero-sub">Tifre verzorgt uw volledige totaalrenovatie — van ruwbouw en technieken tot afwerking en interieur. Eén aannemer, één aanspreekpunt, nul zorgen.</p>
-    <div class="hero-client">
-      <div><b>Patrick Baeyens</b>Eikenlaan 117, 9111 Belsele</div>
-      <div><b>Michaël Burgelman</b>bouw@tifre.be</div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="price-card">
-      <div class="price-label">Uw prijs</div>
-      <div class="price-big">€ 500.000</div>
-      <div class="price-sub">excl. btw &nbsp;·&nbsp; incl. btw € 532.203</div>
-      <div class="saving-badge" style="margin-top:1rem">
-        <div>
-          <div class="saving-label">Cataloguswaarde</div>
-          <div class="saving-val">€ 567.277</div>
-        </div>
-        <div style="text-align:right">
-          <div class="saving-label">U bespaart</div>
-          <div class="saving-val">€ 67.277</div>
-        </div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Totaalrenovatie &nbsp;·&nbsp; Offerte 2026/8210</div>
+      <h1 class="hero-h1">meer dan renoveren.<span class="accent" style="color:var(--red)">•</span><br><span class="accent">Uw droomwoning, van A tot Z.</span></h1>
+      <p class="hero-sub">Tifre verzorgt uw volledige totaalrenovatie — van ruwbouw en technieken tot afwerking en interieur. Eén aannemer, één aanspreekpunt, nul zorgen. Klik op een onderdeel hieronder voor alle details.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><b>Patrick Baeyens</b><span>Eikenlaan 117 · 9111 Belsele</span></div>
+        <div class="hero-meta-item"><b>Michaël Burgelman</b><span>bouw@tifre.be · +32 470 96 23 03</span></div>
+        <div class="hero-meta-item"><b>16 maart 2026</b><span>Datum offerte</span></div>
       </div>
     </div>
-    <div class="deadline">⚠ Prijszekerheid gegarandeerd bij bevestiging uiterlijk 31 maart 2026</div>
+    <div>
+      <div class="price-card">
+        <div class="pc-eyebrow">Uw prijs</div>
+        <div class="pc-price">€ 500.000 <span>excl. btw</span></div>
+        <div class="pc-incl">Totaal incl. btw: <strong>€ 532.203</strong></div>
+        <div class="saving-row">
+          <div class="sr-block">
+            <div class="sr-l">Cataloguswaarde</div>
+            <div class="sr-v">€ 567.277</div>
+          </div>
+          <div class="sr-block highlight">
+            <div class="sr-l" style="text-align:right">U bespaart</div>
+            <div class="sr-v" style="text-align:right">€ 67.277</div>
+          </div>
+        </div>
+        <div class="deadline-pill">⚠ Prijszekerheid gegarandeerd bij bevestiging uiterlijk 31 maart 2026</div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- SCOPE -->
 <div class="section" id="scope">
-  <div class="section-title">Wat krijgt u?</div>
-  <div class="section-sub">Alle disciplines onder één dak</div>
-  <div class="disciplines-grid">
-    <div class="discipline-card">
-      <div class="disc-num">01</div>
-      <div class="disc-title">Ruwbouw & constructie</div>
-      <div class="disc-body">Sloop, constructieve openingen met staalliggers, metselwerk, houtskeletbijbouw CLS 180mm, plat dak EPDM Resitrix.</div>
+  <div class="section-inner">
+    <div class="sec-eyebrow">Uw renovatie</div>
+    <h2 class="sec-h2">Wat krijgt u?</h2>
+    <p class="sec-sub">Klik op een onderdeel voor alle details, inbegrepen posten en opmerkingen</p>
+    <div class="tiles" id="tiles-container"></div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="section" id="pricing" style="background:var(--bg)">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Transparant</div>
+    <h2 class="sec-h2">Prijsoverzicht</h2>
+    <p class="sec-sub">Alle posten excl. BTW</p>
+    <div class="tab-btns">
+      <button class="tbtn active" onclick="switchTab('bar',this)">Grafisch overzicht</button>
+      <button class="tbtn" onclick="switchTab('table',this)">Alle posten</button>
     </div>
-    <div class="discipline-card">
-      <div class="disc-num">02</div>
-      <div class="disc-title">Technieken</div>
-      <div class="disc-body">Volledige elektriciteit (Niko), sanitaire leidingen, riolering, ventilatie type D (DucoBox Energy Comfort Plus D4).</div>
-    </div>
-    <div class="discipline-card" style="border-top-color:var(--orange)">
-      <div class="disc-num" style="color:var(--orange)">03</div>
-      <div class="disc-title">Zonnepanelen & energie</div>
-      <div class="disc-body">20× Jinko 450 Wp Full Black, Huawei hybride omvormer, Huawei thuisbatterij 15 kW. Oost-west oriëntatie.</div>
-    </div>
-    <div class="discipline-card">
-      <div class="disc-num">04</div>
-      <div class="disc-title">Buitenschrijnwerk</div>
-      <div class="disc-body">12 ramen + 3 schuiframen + 1 erker + 2 deuropstellingen. Reynaers Masterline 8 / CP155-LS. Seaside, Ug=1,0.</div>
-    </div>
-    <div class="discipline-card">
-      <div class="disc-num">05</div>
-      <div class="disc-title">Warmtepomp & vloerverwarming</div>
-      <div class="disc-body">Daikin ERGA08 lucht-water warmtepomp. Vloerverwarming gelijkvloers (±142m²) + badkamers. SWW-tank 250L.</div>
-    </div>
-    <div class="discipline-card">
-      <div class="disc-num">06</div>
-      <div class="disc-title">Vloer- & wandafwerking</div>
-      <div class="disc-body">Vloertegels €70/m², wandtegels €70/m², parket €80/m², gipskarton, vals plafond, bezettingswerken.</div>
-    </div>
-    <div class="discipline-card" style="border-top-color:var(--orange)">
-      <div class="disc-num" style="color:var(--orange)">07</div>
-      <div class="disc-title">Keuken (Miele)</div>
-      <div class="disc-body">HPL fronten, Dekton Albarium werkbladen, Quooker, Miele inductiekookplaat + afzuiging, oven, combioven, koelkast, wijnkast, vaatwasser.</div>
-    </div>
-    <div class="discipline-card">
-      <div class="disc-num">08</div>
-      <div class="disc-title">Badkamer & sanitair</div>
-      <div class="disc-body">Volledige inrichting via Desco (budget € 28.000 excl. btw): douchebakken, ligbad, lavabomeubels, inbouwtoiletten.</div>
-    </div>
-    <div class="discipline-card">
-      <div class="disc-num">09</div>
-      <div class="disc-title">Afwerking & extra's</div>
-      <div class="disc-body">Gashaard Hoxter ECKA + marmeren sokkel, steellookdeur, 12 binnendeuren Xinix/Invisidoor, schilderwerken buitengevel, zoldertrap Fakro.</div>
+    <div class="tab-panel active" id="tab-bar"><div id="bars"></div></div>
+    <div class="tab-panel" id="tab-table">
+      <table class="ptable"><thead><tr><th>Omschrijving</th><th>BTW</th><th>Bedrag excl. BTW</th></tr></thead><tbody id="ptbody"></tbody></table>
     </div>
   </div>
 </div>
 
-<div class="section" id="pricing">
-  <div class="section-title">Prijsoverzicht</div>
-  <div class="section-sub">Transparant per discipline</div>
-
-  <div class="tabs">
-    <div class="tab active" onclick="switchTab('bar')">Grafisch</div>
-    <div class="tab" onclick="switchTab('table')">Tabel</div>
-  </div>
-
-  <div class="tab-panel active" id="tab-bar">
-    <div id="bars"></div>
-  </div>
-
-  <div class="tab-panel" id="tab-table">
-    <table class="price-table">
-      <thead><tr><th>Omschrijving</th><th>BTW</th><th>Bedrag</th></tr></thead>
-      <tbody id="price-rows"></tbody>
-    </table>
-  </div>
-</div>
-
+<!-- PAYMENT -->
 <div class="section" id="payment">
-  <div class="section-title">Betalingsplan</div>
-  <div class="section-sub">Gespreid over 6 uitvoeringsfases</div>
-  <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;overflow:hidden">
-    <div class="phase-list" id="phases"></div>
+  <div class="section-inner">
+    <div class="sec-eyebrow">Gespreid</div>
+    <h2 class="sec-h2">Betalingsplan</h2>
+    <p class="sec-sub">6 uitvoeringsfases · betalingstermijn 15 dagen na factuurdatum</p>
+    <div class="phase-wrap">
+      <div id="phases"></div>
+      <div class="phase-footer"><span>Totaal excl. BTW</span><strong>€ 500.000</strong></div>
+    </div>
+    <p style="font-size:12px;color:var(--grey);margin-top:10px">Bij wanbetaling zijn de bepalingen van Boek XIX van het Wetboek Economisch Recht van toepassing.</p>
   </div>
-  <p style="font-size:12px;color:var(--color-text-secondary);margin-top:10px;padding-left:4px">Betalingstermijn: 15 dagen na factuurdatum &nbsp;·&nbsp; Boek XIX WER bij wanbetaling</p>
 </div>
 
-<div class="section" id="why">
-  <div class="section-title">Waarom Tifre?</div>
-  <div class="section-sub">Uw zekerheid van A tot Z</div>
-  <div class="usp-grid">
-    <div class="usp-card">
-      <div class="usp-icon">🛡</div>
-      <div class="usp-title">Prijszekerheid</div>
-      <div class="usp-body">Geen verrassingen. Vaste prijs gegarandeerd bij bevestiging vóór 31 maart 2026. Geen indexeringen.</div>
-    </div>
-    <div class="usp-card">
-      <div class="usp-icon">🏗</div>
-      <div class="usp-title">Één aannemer</div>
-      <div class="usp-body">Van sloopwerken tot interieuradvies: alles bij Tifre. Eén aanspreekpunt, één planning, geen coördinatieproblemen.</div>
-    </div>
-    <div class="usp-card">
-      <div class="usp-icon">✔</div>
-      <div class="usp-title">10-jarige garantie</div>
-      <div class="usp-body">Tienjarige aansprakelijkheid (Wet Peeters) bij AXA Belgium, polisnummer 720 182 104.</div>
-    </div>
-    <div class="usp-card">
-      <div class="usp-icon">🏠</div>
-      <div class="usp-title">Gratis tijdelijk verblijf</div>
-      <div class="usp-body">Tifre zorgt kosteloos voor een appartement op de Kon. Astridlaan tijdens de volledige doorlooptijd.</div>
-    </div>
-    <div class="usp-card">
-      <div class="usp-icon">⚡</div>
-      <div class="usp-title">Duurzaamheid</div>
-      <div class="usp-body">20 zonnepanelen + Huawei batterij 15 kW + warmtepomp Daikin. Uw woning klaar voor de toekomst.</div>
-    </div>
-    <div class="usp-card">
-      <div class="usp-icon">💡</div>
-      <div class="usp-title">Gratis interieuradvies</div>
-      <div class="usp-body">Onze interieurvormgever begeleidt u van opmetingen tot presentatie. Volledig inbegrepen.</div>
+<!-- WHY -->
+<div class="section" id="why" style="background:var(--bg)">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Uw zekerheid</div>
+    <h2 class="sec-h2">Waarom Tifre?</h2>
+    <p class="sec-sub">Meer dan 20 jaar ervaring in totaalrenovaties</p>
+    <div class="usp-grid">
+      <div class="usp-card"><div class="usp-ico">🛡️</div><div class="usp-t">Prijszekerheid</div><div class="usp-b">Vaste prijs gegarandeerd bij bevestiging vóór 31 maart 2026. Geen indexeringen of verrassingen tijdens de werken.</div></div>
+      <div class="usp-card"><div class="usp-ico">🏗️</div><div class="usp-t">Één aannemer, alles inbegrepen</div><div class="usp-b">Van sloopwerken tot interieuradvies: alles bij Tifre. Eén aanspreekpunt, één planning, geen coördinatieproblemen.</div></div>
+      <div class="usp-card"><div class="usp-ico">✅</div><div class="usp-t">10-jarige garantie</div><div class="usp-b">Tienjarige aansprakelijkheid (Wet Peeters, 9 juni 2017) bij AXA Belgium, polisnummer 720 182 104.</div></div>
+      <div class="usp-card"><div class="usp-ico">🏠</div><div class="usp-t">Gratis tijdelijk verblijf</div><div class="usp-b">Tifre zorgt kosteloos voor een appartement op de Kon. Astridlaan tijdens de volledige doorlooptijd van de werken.</div></div>
+      <div class="usp-card"><div class="usp-ico">⚡</div><div class="usp-t">Duurzaamheid & energie</div><div class="usp-b">20 zonnepanelen + Huawei batterij 15 kW + warmtepomp Daikin. Uw woning klaar voor de toekomst, vandaag geïnstalleerd.</div></div>
+      <div class="usp-card"><div class="usp-ico">💡</div><div class="usp-t">Gratis interieuradvies</div><div class="usp-b">Onze interieurvormgever begeleidt u van opmetingen en tekenwerk tot materiaaladvies en presentatie. Volledig inbegrepen.</div></div>
     </div>
   </div>
 </div>
 
+<!-- CONTACT -->
 <div class="section" id="contact">
-  <div class="section-title">Volgende stappen</div>
-  <div class="section-sub">Klaar om te starten?</div>
-  <div class="contact-block">
-    <div>
-      <div class="contact-name">Michaël Burgelman</div>
-      <div class="contact-role">Project manager — Tifre BV</div>
-      <div class="contact-item"><b>+32 470 96 23 03</b></div>
-      <div class="contact-item"><b>bouw@tifre.be</b></div>
-      <div class="contact-item"><b>tifre.be</b></div>
-      <div class="contact-item" style="margin-top:8px">K. Astridlaan 24<br>9100 Sint-Niklaas</div>
-    </div>
-    <div>
-      <div class="steps-list">
-        <div class="step-row">
-          <div class="step-num s1">01</div>
-          <div class="step-text"><b>Offerte bevestigen</b><br>Onderteken voor 31/03/2026 voor prijszekerheid</div>
+  <div class="section-inner">
+    <div class="sec-eyebrow">Volgende stappen</div>
+    <h2 class="sec-h2">Klaar om te starten?</h2>
+    <p class="sec-sub">Bevestig uw offerte voor 31 maart 2026 en we plannen meteen uw startdatum in</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-name">Michaël Burgelman</div>
+        <div class="contact-role">Project manager — Tifre BV</div>
+        <div class="contact-item"><strong>+32 470 96 23 03</strong></div>
+        <div class="contact-item"><strong>bouw@tifre.be</strong></div>
+        <div class="contact-item"><strong>tifre.be</strong></div>
+        <div class="contact-item" style="margin-top:8px;flex-direction:column;align-items:flex-start;gap:2px">
+          <strong>K. Astridlaan 24</strong>
+          <span style="color:rgba(255,255,255,.5);font-size:13px">9100 Sint-Niklaas · BE 0478.397.070</span>
         </div>
-        <div class="step-row">
-          <div class="step-num s2">02</div>
-          <div class="step-text"><b>Omgevingsvergunning</b><br>Klant vraagt aan; Tifre staat klaar bij goedkeuring</div>
-        </div>
-        <div class="step-row">
-          <div class="step-num s3">03</div>
-          <div class="step-text"><b>Startdatum vastleggen</b><br>Na vergunning plannen we gezamenlijk de fasering</div>
-        </div>
-        <div class="step-row">
-          <div class="step-num s4">04</div>
-          <div class="step-text"><b>Oplevering</b><br>Uw gerenoveerde woning, turnkey afgeleverd</div>
-        </div>
+      </div>
+      <div class="steps-card">
+        <div class="steps-title">Hoe verloopt het?</div>
+        <div class="step-row"><div class="step-n" style="background:var(--red)">01</div><div class="step-t"><strong>Offerte bevestigen</strong>Onderteken voor 31/03/2026 voor prijszekerheid</div></div>
+        <div class="step-row"><div class="step-n" style="background:var(--blue)">02</div><div class="step-t"><strong>Omgevingsvergunning</strong>Klant vraagt aan · Tifre staat klaar bij goedkeuring</div></div>
+        <div class="step-row"><div class="step-n" style="background:var(--blue)">03</div><div class="step-t"><strong>Startdatum vastleggen</strong>Na vergunning plannen we gezamenlijk de fasering</div></div>
+        <div class="step-row"><div class="step-n" style="background:var(--blue)">04</div><div class="step-t"><strong>Oplevering</strong>Uw gerenoveerde woning, turnkey afgeleverd</div></div>
       </div>
     </div>
   </div>
 </div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="brand"><span class="brand-t">Tifre</span><span class="brand-d"></span></div>
+      <div class="footer-info">meer dan renoveren &nbsp;·&nbsp; K. Astridlaan 24, 9100 Sint-Niklaas<br>BE 0478.397.070 &nbsp;·&nbsp; 03 755 51 08</div>
+    </div>
+    <div class="footer-info" style="text-align:right">
+      <strong>Offerte 2026/8210</strong><br>
+      Patrick Baeyens · Eikenlaan 117, Belsele<br>
+      Geldig t.e.m. 31 maart 2026
+    </div>
+  </div>
+</footer>
 
 <script>
-const priceData = [
-  ["Voorbereidende werken","6%",23543],
-  ["Constructieve werken","6%",19984],
-  ["Riolering + putten","6%",11912],
-  ["Betonplaat","6%",4687],
-  ["Houtskeletconstructie","6%",11177],
-  ["Plat dak","6%",5925],
-  ["Velux dakvensters (3 st.)","6%",4293],
-  ["Gevel- & snelbouwsteen","6%",6391],
-  ["Dorpels","6%",4901],
-  ["Buitenschrijnwerk Reynaers","6%",68504],
-  ["Gevelbekleding aluminium","6%",13878],
-  ["Elektriciteit vernieuwen","6%",16021],
-  ["Zonnepanelen + batterij","6%",20593],
-  ["Sanitaire leidingen","6%",12213],
-  ["Ventilatiesysteem type D","6%",16069],
-  ["Bezettingswerken","6%",21372],
-  ["PUR isolatie + noppenplaat","6%",10017],
-  ["Warmtepomp vloerverwarming","6%",27824],
-  ["Anhydriet chape","6%",7466],
-  ["Gipskarton + vals plafond","6%",21632],
-  ["Wandtegels","6%",23696],
-  ["Vloertegels","6%",32632],
-  ["Parketvloer","6%",26955],
-  ["Haard + ombouw","6%",18171],
-  ["Badkamerinrichting","6%",34750],
-  ["Keukenmeubelen & werkbladen","6%",40127],
-  ["Keukentoestellen (Miele)","21%",13652],
-  ["Steellookdeur","6%",4919],
-  ["Binnendeuren (12 st.)","6%",7897],
-  ["Schilderwerken buitengevel","6%",23704],
-  ["Afvoer bouwafval","6%",6623],
-  ["Werfinrichting","6%",387],
-  ["Attest tienjarige aansprakelijkheid","21%",1032],
+const disciplines=[
+  {num:"01",title:"Voorbereidende werken",accent:false,price:"€ 23.543",btw:"6%",
+   preview:"Sloop van ramen, deuren, vloeren, elektriciteit, sanitair en CV-installatie.",
+   inc:[["Buitenschrijnwerk (ramen, deuren, schuifraam)","incl. houten dagkanten"],["Houthaard + zandsteen mantel + schouw","gelijkvloers & verdiep"],["Alle bestaande elektriciteit","bekabeling, schakelaars, contacten"],["Sanitaire & CV-leidingen + radiatoren","riolering blijft behouden"],["Vloertegels + chape gelijkvloers","tot bestaande vloerplaat"],["Laminaat 1ste verdieping","incl. badkamer & toilet"],["Betonsteen voorgevel rond traphalraam","incl. vergroting raamopening"],["Constructieve opening zolderverdieping","voor zoldertrap"],["Constructieve opening dakvlak masterbedroom","voor nieuw Velux MK04"]],
+   exc:[["Keuken, badkamerinrichting, houthaard","door klant zelf te verwijderen"],["Herstellingen onderliggende leidingen","op kosten klant"]],
+   note:"Bij uitbreken chape: calculatie op max. 10 cm dikte. Indien dikker → meerprijs."},
+  {num:"02",title:"Constructieve werken",accent:false,price:"€ 19.984",btw:"6%",
+   preview:"6 constructieve openingen met staalliggers voor de nieuwe indeling van de woning.",
+   inc:[["Keuken ↔ terras (bijbouw)","595×230 cm · metalen ligger + betonsloefen"],["Leefruimte ↔ terras (schuifraam)","480×250 cm · metalen ligger + betonsloefen"],["Keuken ↔ leefruimte","250×230 cm · metalen ligger + betonsloefen"],["Leefruimte ↔ hal","100×210 cm · latei"],["Keuken ↔ voorraadkamer","100×230 cm · latei"],["Masterbedroom ↔ nachthal","90×230 cm · latei"]],
+   exc:[["Stabiliteitsstudie indien nodig","€ 850 excl. btw"]],
+   note:"Opgegeven prijs is een raming en kan variëren op basis van de definitieve stabiliteitsstudie."},
+  {num:"03",title:"Riolering & bijbouwfundering",accent:false,price:"€ 28.286",btw:"6%",
+   preview:"Riolering aanpassen + betonplaat en houtskelet nieuwe bijbouw.",
+   inc:[["Rioleringsbuizen, moffen & bochten","nieuwe indeling woning"],["PVC-regenwaterput 10.000L","ijzeren putdeksel + voorfilter + pomp"],["Toezichtsputjes","onderhoud & controle"],["Vezelversterkte betonplaat bijbouw","max. 15 cm + EPDM + vorstrand + Ytong"],["Houtskeletconstructie bijbouw","I-joist liggers + CLS 180mm + Knauf Multifit R5.10"],["Dak: hellingsspieën + 18mm OSB","stabiele dakstructuur"],["Celit 4D buitenbeplating","vochtregulatie & isolatie"]],
+   exc:[["Dikkere betonplaat dan 15 cm","→ meerprijs"]],
+   note:"Bestaande regenwaterput en septische put dienen vóór start leeg gemaakt te worden door de klant."},
+  {num:"04",title:"Plat dak & dakvensters",accent:false,price:"€ 10.218",btw:"6%",
+   preview:"Volledig nieuw plat dak met EPDM + 3 Velux dakvensters GGU0070 UK04.",
+   inc:[["Alutrix dampscherm","op nieuwe dakconstructie"],["PIR isolatie 12 cm — IKO Enertherm","R-waarde 5,45 m²K/W"],["EPDM Resitrix SK W","wortelvaste waterdichting + alu dakranden"],["3× Velux GGU0070 UK04 (134×98 cm)","badkamer, douchekamer & masterbedroom"],["Energy+comfort beglazing","Ug=1,0 · Uw=1,3 W/m²K · UV-filter"],["Waterdichte buitenafwerking","gootstukken + dakpannen aanwerken"]],
+   exc:[],note:"Velux heeft een draaifunctie — buitenzijde glas bereikbaar van binnenuit. Inclusief UV-filter tegen verkleuring interieur."},
+  {num:"05",title:"Buitenschrijnwerk Reynaers",accent:false,price:"€ 68.504",btw:"6%",
+   preview:"12 ramen, 3 schuiframen, 1 erker en 2 deuropstellingen in Reynaers aluminium.",
+   inc:[["Voordeur gesloten paneel","110×2400 mm"],["Vast raam zitruimte × 3","Ug=1,0 W/m²K"],["Vast raam traphal","1200×3000 mm"],["Schuifraam keuken 1","6000×3000 mm + Renson MS7 fix 150 screen"],["Schuifraam keuken 2","2900×3000 mm + Renson MS7 fix 100 screen"],["Vast raam zijgevel bijbouw","600×3000 mm + Renson screen"],["Schuifraam zitruimte","5050×2500 mm + 1 vast deel"],["Achterdeur mat glas","1000×2200 mm"],["Vast raam wasruimte","800×1000 mm"],["Erker 3 vaste delen","800+1500+800 mm × 1300 mm"],["Draaikipraam masterbedroom × 2","—"],["Draaikipraam slaapkamer × 2","—"],["Gevelbekleding aluminium bijbouw","Alinel type A gepoederlakt"]],
+   exc:[],note:"Masterline 8 (ramen/deuren) · CP155-LS (schuiframen) · Seaside-afwerking · Unicolor RAL naar keuze · Sobinco Chrono beslag"},
+  {num:"06",title:"Elektriciteit vernieuwen",accent:false,price:"€ 16.021",btw:"6%",
+   preview:"Volledige vernieuwing: 30 dubbele + 30 enkele contacten, 20 lichtpunten, domotica-ready.",
+   inc:[["30 dubbele + 30 enkele stopcontacten","Niko Intense wit"],["20 lichtpunten + 26 wisselschakelaars","—"],["Keuken: 7 dédié voedingen","inductie, oven, combioven, koelkast, wijnkoeler, vaatwasser, dampkap"],["Voeding laadpaal voorgevel","kabel 10LM klaargelegd"],["Voeding tuinzijde","kabel 20LM toekomstige werken"],["Zonnepanelen + thuisbatterij","kabel garage → hellend dak"],["Lucht-lucht units: buitenunits × 2","26LM vanuit garage"],["UTP 6 aansluitpunten + coax","toekomstgericht"],["Niko videofoon + 2× binnenunit","—"],["Keuring + ASBUILD-plannen","inbegrepen"]],
+   exc:[["Dimmers, armaturen, aanvoerkabels","—"],["Fluvius/Electrabel aansluitkosten","—"],["Alarmsysteem","apart te voorzien"]],
+   note:"Extra stopcontact: € 95 excl. btw · Extra lichtpunt: € 65 excl. btw (bedrading inbegrepen)"},
+  {num:"07",title:"Sanitair & riolering",accent:false,price:"€ 12.213",btw:"6%",
+   preview:"18 koud- + 10 warmwater- + 2 regenwaterpunten, 16 afvoeren, 2 buitenkranen.",
+   inc:[["18 koudwaterpunten","keuken, badkamer, toiletten, wasmachine, boiler…"],["10 warmwaterpunten","douches, wastafels, keuken"],["2 regenwaterpunten","toiletspoeling & tuinbewatering"],["Collectoren","efficiënte verdeling"],["13 sanitaire afvoeren","badkamers, keuken, wasmachine, wastafels"],["3 toiletafvoeren","—"],["2 vorstvrije buitenkranen","—"]],
+   exc:[],note:"Aansluiting op bestaand rioleringsnetwerk verondersteld."},
+  {num:"08",title:"Warmtepomp & vloerverwarming",accent:true,price:"€ 27.824",btw:"6%",
+   preview:"Daikin lucht-water warmtepomp + vloerverwarming ±164 m² + SWW-tank 250L.",
+   inc:[["Daikin ERGA08EVH7 buitenunit","3R 1×230V+N"],["Daikin EHBH08E6V binnenunit","3RW 1×230V+N"],["Daikin EKHWS250D3V3 SWW-tank 250L","roestvrij staal"],["Vloerverwarming gelijkvloers","±142 m² (excl. garage)"],["Vloerverwarming badkamers + toiletten","±22 m² op 1ste verdieping"],["Draadloze thermostaat + relais","voor 2 warmtepompen"],["Expansievaten (12L + 18L)","—"],["Demonteren + herplaatsen lucht-lucht buitenunit","naar zijtuin"]],
+   exc:[],note:"Opstartprocedure vloerverwarming verplicht vóór betegeling."},
+  {num:"09",title:"Ventilatie type D",accent:false,price:"€ 16.069",btw:"6%",
+   preview:"DucoBox Energy Comfort Plus D4 met warmterecuperatie — gezond binnenklimaat.",
+   inc:[["DucoBox Energy Comfort Plus D4","stille & efficiënte unit"],["Collectoren voor luchtverdeling","—"],["Leidingen met minimaal luchtverlies","—"],["Condensafvoer + vochtsensor","—"],["Aanvoer- & afvoerventielen","frisse lucht aan + vervuilde lucht af"]],
+   exc:[],note:"Warmterecuperatie: warmte van afgevoerde lucht verwarmt de inkomende frisse lucht → minder energieverbruik."},
+  {num:"10",title:"Zonnepanelen + batterij",accent:true,price:"€ 20.593",btw:"6%",
+   preview:"20× Jinko 450 Wp Full Black + Huawei hybride omvormer + thuisbatterij 15 kW.",
+   inc:[["20× Jinko 450 Wp Full Black","10 oost + 10 west · 25j productgarantie"],["Huawei hybride omvormer","batterij-ready"],["Huawei opslagmodule 15 kW","thuisbatterij"],["Montage pannendak — Schletter","—"],["Alle bekabeling & accessoires","—"],["Keuring AREI + administratie netbeheerder","—"],["Recyclagebijdrage + ecotax","—"]],
+   exc:[],note:"Gegarandeerde opbrengst: min. 87,4% originele capaciteit na 30 jaar."},
+  {num:"11",title:"Isolatie, chape & wanden",accent:false,price:"€ 67.489",btw:"6%",
+   preview:"PUR-isolatie, noppenplaat, anhydriet chape, bezetting, gipskarton en vals plafond.",
+   inc:[["PUR-isolatie 12 cm gespoten (R=4,8)","bijbouw + garage"],["Noppenplaat 3 cm","gelijkvloers excl. garage"],["Anhydriet chape gelijkvloers + badkamers","geschikt voor vloertegels"],["Gewapende chape bijbouw + garage","max. 8 cm"],["Bezetting Knauf MP75","muren hal, traphal, dagkanten, nieuwe steen"],["Gipskarton bijgebouw + dagkanten Velux","—"],["Vals plafond leefruimte, tv-hoek, bureel, inkom, leefkeuken","—"],["Plamuren & opschuren alle gipskarton","—"]],
+   exc:[["Schilderwerken","aanbevolen na ±1 jaar drogen"]],
+   note:"Voorafgaand aan schilderwerken: vochtmeting vereist."},
+  {num:"12",title:"Vloer- en wandtegels",accent:false,price:"€ 56.328",btw:"6%",
+   preview:"Vloertegels €70/m² en wandtegels €70/m² XL-formaat, inclusief voeg- en kitwerk.",
+   inc:[["Vloertegels — handelswaarde €70/m²","XL-tegels · keuze op belevingsruimte"],["Wandtegels — handelswaarde €70/m²","XL-tegels"],["Vochtwerend doek inloopdouches","gelijkvloers + 1ste verdieping"],["Voegwerk + kitten binnenhoeken & plinten","—"],["Wandtegels badkamer tot plafond","incl. constructieve wand wastafel"],["Wandtegels toiletten tot 1200 mm","gelijkvloers + 1ste verdieping"]],
+   exc:[["Mozaïek, visgraat of bijzonder patroon","→ meerprijs plaatsing"]],
+   note:"Voorzien op gelijkvloers (voorraadkamer, leefkeuken, hal, bureel) en badkamers/toiletten 1ste verdieping."},
+  {num:"13",title:"Parketvloer",accent:false,price:"€ 26.955",btw:"6%",
+   preview:"Samengesteld parket €80/m² — leefruimte, tv-hoek en volledige 1ste verdieping.",
+   inc:[["Samengesteld parket — handelswaarde €80/m²","bij Laminaatshop — vrije keuze stijl"],["Verlijming + bijpassende plinten","—"],["Gelijkvloers: leefruimte + tv-hoek","—"],["1ste verdieping: nachthal, masterbedroom, berging, slaapkamers 1 & 2","—"]],
+   exc:[["Visgraat of speciaal legpatroon","→ meerprijs"]],note:"Parketvloer is naar keuze bij onze leverancier Laminaatshop."},
+  {num:"14",title:"Keuken — meubelen & toestellen",accent:true,price:"€ 53.779",btw:"6% / 21%",
+   preview:"Volledig nieuwe keuken met Miele toestellen, Dekton werkbladen en Quooker kraan.",
+   inc:[["Keukenmeubelen HPL Egger Unikleur","horizontale & verticale greeplijst"],["Blanco Subline silgraniet spoelbak","warm wit · manueel"],["Quooker Combi+ heetwaterkraan","RVS"],["Dekton Albarium werkbladen 2 cm","kook+spoeleiland 3940×1200 + werkzone 1800×600 mm"],["Miele H7244B-OBSW hetelucht inbouwoven","VitroLine"],["Miele H7440BM-OBSW combi inbouwoven","VitroLine"],["Miele K7747D koelkast","verskoelzone · 1778 mm"],["Miele KWTUS 7096 wijnkast","2 temperatuurzones · push to open"],["Miele G7260 SCVi vaatwasser","volledig geïntegreerd"],["Miele KMDA 7676-1 FL inductiekookplaat","BlackPerfection + geïntegreerde afzuiging"]],
+   exc:[],note:"Keukentoestellen aan 21% BTW. Meubelen + werkbladen aan 6% BTW."},
+  {num:"15",title:"Badkamer & sanitair",accent:false,price:"€ 34.750",btw:"6%",
+   preview:"Volledige inrichting via Desco (€28.000 excl. btw) — 3 toiletten, 2 douches, ligbad.",
+   inc:[["Douchekamer gelijkvloers","douchebak 1600×900 + kraanwerk + enkel lavabomeubel"],["Toilet gelijkvloers","inbouwtoilet + hangtoilet + omkasting + handenwasser"],["Toilet badkamer 1ste verdieping","inbouwtoilet + hangtoilet + omkasting"],["Toilet 1ste verdieping","inbouwtoilet + hangtoilet + omkasting + handenwasser"],["Badkamer 1ste verdieping","douchebak 1800×900 + douche + dubbel lavabomeubel + ligbad"]],
+   exc:[["Inbouwkraanwerk","→ meerprijs op aanvraag"],["Ladderlift groot douchescherm","→ eventueel meerprijs"]],
+   note:"Budget €28.000 excl. btw bij Desco — vrije keuze toestellen."},
+  {num:"16",title:"Haard, deuren & buitenafwerking",accent:false,price:"€ 54.523",btw:"6%",
+   preview:"Gashaard Hoxter ECKA + marmeren sokkel, steellookdeur, 12 binnendeuren, schilderwerken.",
+   inc:[["Gashaard Hoxter ECKA 80/35/50","gesloten verbranding · enkel glas"],["Marmeren sokkel Amalfi Grey","4400×600×250 mm · verstek opgedikt"],["Ombouw gashaard Promasil brandwerend","B140×D40×H200 cm"],["Steellookdeur hal→woonkamer","2405×1020 mm · S235 staal · RAL naar keuze · pivoterend"],["12× binnendeur Xinix/Invisidoor","magneetslot · L-shape kruk zwart"],["Schilderwerken buitengevel","ontmossen, reinigen, 2 lagen ademende verf"],["Afvoer bouwafval + werfinrichting","containers + verwerking inbegrepen"],["Attest tienjarige aansprakelijkheid","Wet Peeters · AXA Belgium"]],
+   exc:[],note:"Schilderwerken buitengevel: richtprijs afhankelijk van plaatsbezoek schilder."},
+  {num:"17",title:"Commerciële korting",accent:true,price:"− € 67.277",btw:"6%",
+   preview:"Exclusieve korting inclusief gratis saneringswerken mazouttank en tijdelijk verblijf.",
+   inc:[["Commerciële korting op totaalbedrag","€ 67.277 excl. btw"],["Ledigen & saneren mazouttank zijtuin","gratis — eventueel ook verwijderen"],["Gratis tijdelijk verblijf tijdens werken","appartement Kon. Astridlaan of alternatief"]],
+   exc:[],note:"Deze korting is gegarandeerd bij bevestiging van de offerte uiterlijk 31 maart 2026."},
+];
+
+const priceRows=[
+  ["Voorbereidende werken","6%",23543],["Constructieve werken","6%",19984],
+  ["Riolering + putten","6%",11912],["Betonplaat","6%",4687],
+  ["Houtskeletconstructie","6%",11177],["Plat dak","6%",5925],
+  ["Velux dakvensters (3 st.)","6%",4293],["Gevelmetselwerk & snelbouwsteen","6%",6391],
+  ["Dorpels","6%",4901],["Buitenschrijnwerk Reynaers aluminium","6%",68504],
+  ["Gevelbekleding aluminium","6%",13878],["Zoldertrap Fakro Comfort","6%",836],
+  ["Voorzetwand / Constructieve wand","6%",3254],["Elektriciteit vernieuwen","6%",16021],
+  ["Zonnepanelen pannendak + batterij","6%",20593],["Sanitaire leidingen","6%",12213],
+  ["Ventilatiesysteem type D","6%",16069],["Bezettingswerken","6%",21372],
+  ["PUR isolatie + noppenplaat","6%",10017],["Warmtepomp vloerverwarming (Daikin)","6%",27824],
+  ["Anhydriet chape en chape","6%",7466],["Gipskarton / Vals plafond / Plamuren","6%",21632],
+  ["Wandtegels","6%",23696],["Vloertegels","6%",32632],["Parketvloer","6%",26955],
+  ["Haard met ombouw en natuursteen","6%",18171],["Badkamerinrichting","6%",34750],
+  ["Keukenmeubelen, sanitair & werkbladen","6%",40127],["Keukentoestellen (Miele)","21%",13652],
+  ["Steellookdeur","6%",4919],["Binnendeuren (12 st.)","6%",7897],
+  ["Schilderwerken buitengevel","6%",23704],["Afvoer bouwafval","6%",6623],
+  ["Werfinrichting","6%",387],["Attest tienjarige aansprakelijkheid","21%",1032],
   ["Commerciële korting","6%",-67277],
 ];
 
-const fmt = n => (n<0?'- ':'') + '€ ' + Math.abs(n).toLocaleString('nl-BE');
-
-const tbody = document.getElementById('price-rows');
-priceData.forEach(([desc,btw,amt]) => {
-  const tr = document.createElement('tr');
-  if(desc==='Commerciële korting') tr.className='discount';
-  tr.innerHTML = `<td>${desc}</td><td>${btw}</td><td>${fmt(amt)}</td>`;
-  tbody.appendChild(tr);
-});
-const totalsData = [
-  ['BTW 6% (renovatiewerken)','','€ 29.119',''],
-  ['BTW 21% (toestellen)','','€ 3.084',''],
+const barGroups=[
+  {label:"Ruwbouw & constructie",val:75158,color:"#00B4D8"},
+  {label:"Buitenschrijnwerk Reynaers",val:82382,color:"#0090b0"},
+  {label:"Keuken & badkamer",val:88530,color:"#E63030"},
+  {label:"Vloer- & wandafwerking",val:83284,color:"#00B4D8"},
+  {label:"Elektriciteit, sanitair & ventilatie",val:45303,color:"#0090b0"},
+  {label:"Warmtepomp + vloerverwarming",val:27824,color:"#4a5568"},
+  {label:"Zonnepanelen + batterij",val:20593,color:"#E63030"},
+  {label:"Isolatie, chape & wanden",val:43004,color:"#718096"},
+  {label:"Schilderwerken & overige",val:13627,color:"#a0aec0"},
 ];
-totalsData.forEach(([d,b,a])=>{
-  const tr=document.createElement('tr');
-  tr.className='total';
-  tr.innerHTML=`<td colspan="2">${d}</td><td>${a}</td>`;
-  tbody.appendChild(tr);
-});
-const trtm=document.createElement('tr');
-trtm.className='total-main';
-trtm.innerHTML='<td colspan="2">Totaal incl. BTW</td><td>€ 532.203</td>';
-tbody.appendChild(trtm);
 
-const groups = [
-  {label:'Ruwbouw & constructie',val:75158,color:'#00AEEF'},
-  {label:'Buitenschrijnwerk',val:82382,color:'#005F8E'},
-  {label:'Keuken & badkamer',val:88530,color:'#FF6B35'},
-  {label:'Vloer & wandafwerking',val:83284,color:'#00AEEF'},
-  {label:'Technieken (elektr/sanit/vent)',val:45303,color:'#005F8E'},
-  {label:'Warmtepomp + vloerverwarming',val:27824,color:'#00AEEF'},
-  {label:'Zonnepanelen + batterij',val:20593,color:'#FF6B35'},
-  {label:'Afwerking & overige',val:77186,color:'#8FA3B1'},
+const phases=[
+  {num:"01",name:"Voorschot bij bevestiging",desc:"Vóór start werken",amt:"50.000",pct:"10%",first:true},
+  {num:"02",name:"Start ruwbouw & constructie",desc:"Na vergunning, start werf",amt:"100.000",pct:"20%"},
+  {num:"03",name:"Technieken",desc:"Elektriciteit, sanitair, warmtepomp",amt:"125.000",pct:"25%"},
+  {num:"04",name:"Buitenschrijnwerk & gevels",desc:"Na plaatsing schrijnwerk",amt:"100.000",pct:"20%"},
+  {num:"05",name:"Afwerking",desc:"Vloer, wandtegels, parket, plafond",amt:"75.000",pct:"15%"},
+  {num:"06",name:"Keuken, badkamer & oplevering",desc:"Definitieve oplevering",amt:"50.000",pct:"10%"},
 ];
-const maxVal = Math.max(...groups.map(g=>g.val));
-const barsDiv = document.getElementById('bars');
-groups.forEach(g=>{
-  const pct = Math.round(g.val/maxVal*100);
-  barsDiv.innerHTML += `<div class="bar-row">
-    <div class="bar-label">${g.label}</div>
-    <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${g.color}"></div></div>
-    <div class="bar-val">${fmt(g.val)}</div>
-  </div>`;
-});
 
-const phases = [
-  {num:'01',name:'Voorschot bij bevestiging',desc:'Vóór start werken',amt:'50.000',pct:'10%',accent:true},
-  {num:'02',name:'Start ruwbouw & constructie',desc:'Na vergunning, start werf',amt:'100.000',pct:'20%'},
-  {num:'03',name:'Technieken',desc:'Elektriciteit, sanitair, warmtepomp',amt:'125.000',pct:'25%'},
-  {num:'04',name:'Buitenschrijnwerk & gevels',desc:'Na plaatsing schrijnwerk',amt:'100.000',pct:'20%'},
-  {num:'05',name:'Afwerking',desc:'Vloer, wandtegels, parket, plafond',amt:'75.000',pct:'15%'},
-  {num:'06',name:'Keuken, badkamer & oplevering',desc:'Definitieve oplevering',amt:'50.000',pct:'10%'},
-];
-const phDiv = document.getElementById('phases');
-phases.forEach(p=>{
-  const bg = p.accent ? 'var(--orange)' : 'var(--blue)';
-  phDiv.innerHTML += `<div class="phase-row">
-    <div class="phase-num" style="background:${bg}">${p.num}</div>
-    <div><div class="phase-name">${p.name}</div><div class="phase-desc">${p.desc}</div></div>
-    <div><div class="phase-amt">€ ${p.amt}</div><div class="phase-pct">${p.pct}</div></div>
-  </div>`;
-});
+const fmt=n=>(n<0?"− ":"")+"€\u00a0"+Math.abs(n).toLocaleString("nl-BE");
 
-function switchTab(which){
-  document.querySelectorAll('.tab').forEach((t,i)=>{t.classList.toggle('active',['bar','table'][i]===which)});
-  document.getElementById('tab-bar').classList.toggle('active',which==='bar');
-  document.getElementById('tab-table').classList.toggle('active',which==='table');
-}
+// ── TILES ──
+const cont=document.getElementById("tiles-container");
+disciplines.forEach((d,i)=>{
+  const tile=document.createElement("div");
+  tile.className="tile"+(d.accent?" accent":"");
+  tile.innerHTML=`<div class="tile-header"><span class="tile-num">${d.num}</span><span class="tile-chevron">›</span></div><div class="tile-title">${d.title}</div><div class="tile-preview">${d.preview}</div><div class="tile-price">${d.price} <small>excl. btw</small></div>`;
 
-function scrollTo(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
-  document.querySelectorAll('.nav-links a').forEach(a=>{
-    a.classList.toggle('active', a.getAttribute('href')==='#'+id);
+  const drawer=document.createElement("div");
+  drawer.className="drawer";
+  const incRows=d.inc.map(([k,v])=>`<li>${k}<span>${v}</span></li>`).join("");
+  const excRows=d.exc.length?d.exc.map(([k,v])=>`<li>${k}<span>${v}</span></li>`).join(""):`<li class="none">Geen uitsluitingen</li>`;
+  const badgeCls=d.accent?"red":"";
+  drawer.innerHTML=`<div class="drawer-header"><span class="drawer-title">${d.title}</span><span class="drawer-badge ${badgeCls}">${d.price}</span><span class="drawer-btw">${d.btw} BTW</span></div><div class="drawer-body"><div class="drawer-col"><h4>Inbegrepen</h4><ul class="drawer-list">${incRows}</ul></div><div class="drawer-col"><h4 class="red-head">Niet inbegrepen</h4><ul class="drawer-list">${excRows}</ul></div></div>${d.note?`<div class="drawer-note${d.accent?" warn":""}">${d.note}</div>`:""}`;
+
+  tile.addEventListener("click",()=>{
+    const isOpen=tile.classList.contains("open");
+    document.querySelectorAll(".tile.open").forEach(t=>t.classList.remove("open"));
+    document.querySelectorAll(".drawer.open").forEach(dr=>dr.classList.remove("open"));
+    if(!isOpen){tile.classList.add("open");drawer.classList.add("open");setTimeout(()=>drawer.scrollIntoView({behavior:"smooth",block:"nearest"}),60);}
   });
+  cont.appendChild(tile);
+  cont.appendChild(drawer);
+});
+
+// ── BARS ──
+const barsDiv=document.getElementById("bars");
+const maxV=Math.max(...barGroups.map(g=>g.val));
+barGroups.forEach(g=>{
+  const pct=Math.round(g.val/maxV*100);
+  const row=document.createElement("div");row.className="bar-row";
+  row.innerHTML=`<div class="bar-lbl">${g.label}</div><div class="bar-track"><div class="bar-fill" style="width:0%;background:${g.color}" data-w="${pct}"></div></div><div class="bar-val">${fmt(g.val)}</div>`;
+  barsDiv.appendChild(row);
+});
+setTimeout(()=>document.querySelectorAll(".bar-fill").forEach(b=>{b.style.width=b.dataset.w+"%"}),150);
+
+// ── TABLE ──
+const tb=document.getElementById("ptbody");
+priceRows.forEach(([d,b,a])=>{
+  const tr=document.createElement("tr");
+  if(d==="Commerciële korting")tr.className="discount";
+  tr.innerHTML=`<td>${d}</td><td>${b}</td><td>${fmt(a)}</td>`;tb.appendChild(tr);
+});
+[["BTW 6% (renovatiewerken)","€\u00a029.119"],["BTW 21% (toestellen)","€\u00a03.084"]].forEach(([d,a])=>{
+  const tr=document.createElement("tr");tr.className="tot";
+  tr.innerHTML=`<td colspan="2">${d}</td><td>${a}</td>`;tb.appendChild(tr);
+});
+const tm=document.createElement("tr");tm.className="tot-main";
+tm.innerHTML='<td colspan="2">Totaal incl. BTW</td><td>€\u00a0532.203</td>';tb.appendChild(tm);
+
+// ── PHASES ──
+const phDiv=document.getElementById("phases");
+phases.forEach(p=>{
+  const div=document.createElement("div");div.className="phase-row";
+  div.innerHTML=`<div class="ph-num${p.first?" first":""}">${p.num}</div><div><div class="ph-name">${p.name}</div><div class="ph-desc">${p.desc}</div></div><div class="ph-right"><div class="ph-amt">€\u00a0${p.amt}</div><div class="ph-pct">${p.pct}</div></div>`;
+  phDiv.appendChild(div);
+});
+
+// ── TABS ──
+function switchTab(which,btn){
+  document.querySelectorAll(".tbtn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");
+  document.getElementById("tab-bar").classList.toggle("active",which==="bar");
+  document.getElementById("tab-table").classList.toggle("active",which==="table");
+  if(which==="bar")setTimeout(()=>document.querySelectorAll(".bar-fill").forEach(b=>{b.style.width=b.dataset.w+"%"}),80);
 }
 
-document.querySelectorAll('.nav-links a').forEach(a=>{
-  a.addEventListener('click',e=>{e.preventDefault();});
+// ── NAV ──
+const secs=["overview","scope","pricing","payment","why","contact"];
+const navAs=document.querySelectorAll(".nav-links a");
+window.addEventListener("scroll",()=>{
+  const pct=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100;
+  document.getElementById("prog").style.width=Math.min(100,pct)+"%";
+  let cur="overview";
+  secs.forEach(id=>{const el=document.getElementById(id);if(el&&window.scrollY>=el.offsetTop-80)cur=id;});
+  navAs.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+cur));
+});
+navAs.forEach(a=>{
+  a.addEventListener("click",e=>{
+    e.preventDefault();
+    document.getElementById(a.getAttribute("href").slice(1)).scrollIntoView({behavior:"smooth"});
+  });
 });
 </script>
+</body>
+</html>
