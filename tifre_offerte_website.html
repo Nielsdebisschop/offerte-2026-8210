@@ -1,0 +1,409 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#00AEEF;--dark:#1E2A35;--mid:#4A6274;--light:#D6F0FA;--orange:#FF6B35;--grey:#8FA3B1;--off:#F4FAFD}
+body{font-family:var(--font-sans);color:var(--color-text-primary);background:transparent}
+
+nav{background:var(--dark);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:52px;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-size:18px;font-weight:500;display:flex;align-items:center;gap:8px}
+.nav-dot{width:8px;height:8px;background:var(--orange);border-radius:50%;display:inline-block}
+.nav-links{display:flex;gap:0}
+.nav-links a{color:rgba(255,255,255,0.65);font-size:13px;padding:0 14px;height:52px;display:flex;align-items:center;cursor:pointer;transition:color .2s;border-bottom:2px solid transparent;text-decoration:none}
+.nav-links a:hover,.nav-links a.active{color:#fff;border-bottom-color:var(--blue)}
+
+.hero{background:var(--dark);padding:3.5rem 2rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero-left{}
+.hero-tag{font-size:11px;font-weight:500;color:var(--blue);letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem}
+.hero-title{font-size:36px;font-weight:500;color:#fff;line-height:1.2;margin-bottom:1rem}
+.hero-title span{color:var(--blue)}
+.hero-sub{font-size:14px;color:var(--grey);line-height:1.7;margin-bottom:1.5rem}
+.hero-client{font-size:13px;color:rgba(255,255,255,0.5);border-top:1px solid rgba(255,255,255,0.1);padding-top:1rem;display:flex;gap:2rem}
+.hero-client b{color:#fff;display:block;font-size:14px}
+
+.hero-right{}
+.price-card{background:var(--orange);border-radius:12px;padding:1.5rem;margin-bottom:12px}
+.price-label{font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.price-big{font-size:42px;font-weight:500;color:#fff;line-height:1}
+.price-sub{font-size:13px;color:rgba(255,255,255,0.8);margin-top:4px}
+.saving-badge{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between}
+.saving-label{font-size:12px;color:rgba(255,255,255,0.6)}
+.saving-val{font-size:16px;font-weight:500;color:#fff}
+.deadline{font-size:11px;color:rgba(255,255,255,0.4);margin-top:8px;text-align:right}
+
+.section{padding:2rem;border-bottom:1px solid var(--color-border-tertiary)}
+.section-title{font-size:20px;font-weight:500;margin-bottom:.25rem}
+.section-sub{font-size:13px;color:var(--color-text-secondary);margin-bottom:1.5rem}
+
+.disciplines-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.discipline-card{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1rem;border-top:3px solid var(--blue)}
+.disc-num{font-size:11px;font-weight:500;color:var(--blue);letter-spacing:2px;margin-bottom:6px}
+.disc-title{font-size:14px;font-weight:500;margin-bottom:6px}
+.disc-body{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+
+.price-table{width:100%;border-collapse:collapse;font-size:13px}
+.price-table th{text-align:left;font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:1.5px;padding:8px 12px;border-bottom:1.5px solid var(--blue)}
+.price-table th:not(:first-child){text-align:right}
+.price-table td{padding:8px 12px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.price-table td:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
+.price-table tr:nth-child(even) td{background:var(--color-background-secondary)}
+.price-table tr.highlight td{background:var(--color-background-info);color:var(--color-text-info);font-weight:500}
+.price-table tr.discount td{color:var(--color-text-success)}
+.price-table tr.total td{font-weight:500;font-size:14px;border-top:2px solid var(--color-border-primary);border-bottom:none}
+.price-table tr.total-main td{font-size:15px;font-weight:500;background:var(--dark);color:#fff;border-bottom:none}
+.price-table tr.total-main td:last-child{color:var(--orange)}
+
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.bar-label{font-size:12px;color:var(--color-text-secondary);width:200px;flex-shrink:0}
+.bar-track{flex:1;height:20px;background:var(--color-background-secondary);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width .4s}
+.bar-val{font-size:12px;font-weight:500;width:70px;text-align:right;flex-shrink:0}
+
+.phase-list{display:flex;flex-direction:column;gap:0}
+.phase-row{display:grid;grid-template-columns:56px 1fr auto auto;align-items:center;gap:1rem;padding:14px 16px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.phase-row:last-child{border-bottom:none}
+.phase-num{width:40px;height:40px;border-radius:8px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500}
+.phase-name{font-size:14px;font-weight:500}
+.phase-desc{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+.phase-amt{font-size:16px;font-weight:500;text-align:right;white-space:nowrap}
+.phase-pct{font-size:12px;color:var(--color-text-secondary);text-align:right}
+
+.usp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.usp-card{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1.25rem}
+.usp-icon{width:36px;height:36px;border-radius:8px;background:var(--color-background-info);display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;font-size:16px}
+.usp-title{font-size:14px;font-weight:500;margin-bottom:6px}
+.usp-body{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+
+.contact-block{background:var(--dark);border-radius:12px;padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.contact-name{font-size:18px;font-weight:500;color:#fff;margin-bottom:4px}
+.contact-role{font-size:13px;color:var(--grey);margin-bottom:1rem}
+.contact-item{font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px}
+.contact-item b{color:#fff}
+.steps-list{display:flex;flex-direction:column;gap:10px}
+.step-row{display:flex;align-items:flex-start;gap:12px}
+.step-num{width:28px;height:28px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#fff}
+.step-num.s1{background:var(--orange)}
+.step-num.s2,.step-num.s3,.step-num.s4{background:var(--blue)}
+.step-text{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6;padding-top:4px}
+.step-text b{color:#fff}
+
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--color-border-tertiary);margin-bottom:1.5rem}
+.tab{padding:10px 18px;font-size:13px;cursor:pointer;color:var(--color-text-secondary);border-bottom:2px solid transparent;transition:all .2s}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:500}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+</style>
+
+<nav>
+  <div class="nav-brand">TIFRE <span class="nav-dot"></span></div>
+  <div class="nav-links">
+    <a href="#overview" onclick="scrollTo('overview')" class="active">Overzicht</a>
+    <a href="#scope" onclick="scrollTo('scope')">Werken</a>
+    <a href="#pricing" onclick="scrollTo('pricing')">Prijs</a>
+    <a href="#payment" onclick="scrollTo('payment')">Betaling</a>
+    <a href="#why" onclick="scrollTo('why')">Waarom Tifre</a>
+    <a href="#contact" onclick="scrollTo('contact')">Contact</a>
+  </div>
+</nav>
+
+<div class="hero" id="overview">
+  <div class="hero-left">
+    <div class="hero-tag">Offerte 2026 / 8210 &nbsp;·&nbsp; 16 maart 2026</div>
+    <h1 class="hero-title">Uw droomwoning.<br><span>Van A tot Z.</span></h1>
+    <p class="hero-sub">Tifre verzorgt uw volledige totaalrenovatie — van ruwbouw en technieken tot afwerking en interieur. Eén aannemer, één aanspreekpunt, nul zorgen.</p>
+    <div class="hero-client">
+      <div><b>Patrick Baeyens</b>Eikenlaan 117, 9111 Belsele</div>
+      <div><b>Michaël Burgelman</b>bouw@tifre.be</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="price-card">
+      <div class="price-label">Uw prijs</div>
+      <div class="price-big">€ 500.000</div>
+      <div class="price-sub">excl. btw &nbsp;·&nbsp; incl. btw € 532.203</div>
+      <div class="saving-badge" style="margin-top:1rem">
+        <div>
+          <div class="saving-label">Cataloguswaarde</div>
+          <div class="saving-val">€ 567.277</div>
+        </div>
+        <div style="text-align:right">
+          <div class="saving-label">U bespaart</div>
+          <div class="saving-val">€ 67.277</div>
+        </div>
+      </div>
+    </div>
+    <div class="deadline">⚠ Prijszekerheid gegarandeerd bij bevestiging uiterlijk 31 maart 2026</div>
+  </div>
+</div>
+
+<div class="section" id="scope">
+  <div class="section-title">Wat krijgt u?</div>
+  <div class="section-sub">Alle disciplines onder één dak</div>
+  <div class="disciplines-grid">
+    <div class="discipline-card">
+      <div class="disc-num">01</div>
+      <div class="disc-title">Ruwbouw & constructie</div>
+      <div class="disc-body">Sloop, constructieve openingen met staalliggers, metselwerk, houtskeletbijbouw CLS 180mm, plat dak EPDM Resitrix.</div>
+    </div>
+    <div class="discipline-card">
+      <div class="disc-num">02</div>
+      <div class="disc-title">Technieken</div>
+      <div class="disc-body">Volledige elektriciteit (Niko), sanitaire leidingen, riolering, ventilatie type D (DucoBox Energy Comfort Plus D4).</div>
+    </div>
+    <div class="discipline-card" style="border-top-color:var(--orange)">
+      <div class="disc-num" style="color:var(--orange)">03</div>
+      <div class="disc-title">Zonnepanelen & energie</div>
+      <div class="disc-body">20× Jinko 450 Wp Full Black, Huawei hybride omvormer, Huawei thuisbatterij 15 kW. Oost-west oriëntatie.</div>
+    </div>
+    <div class="discipline-card">
+      <div class="disc-num">04</div>
+      <div class="disc-title">Buitenschrijnwerk</div>
+      <div class="disc-body">12 ramen + 3 schuiframen + 1 erker + 2 deuropstellingen. Reynaers Masterline 8 / CP155-LS. Seaside, Ug=1,0.</div>
+    </div>
+    <div class="discipline-card">
+      <div class="disc-num">05</div>
+      <div class="disc-title">Warmtepomp & vloerverwarming</div>
+      <div class="disc-body">Daikin ERGA08 lucht-water warmtepomp. Vloerverwarming gelijkvloers (±142m²) + badkamers. SWW-tank 250L.</div>
+    </div>
+    <div class="discipline-card">
+      <div class="disc-num">06</div>
+      <div class="disc-title">Vloer- & wandafwerking</div>
+      <div class="disc-body">Vloertegels €70/m², wandtegels €70/m², parket €80/m², gipskarton, vals plafond, bezettingswerken.</div>
+    </div>
+    <div class="discipline-card" style="border-top-color:var(--orange)">
+      <div class="disc-num" style="color:var(--orange)">07</div>
+      <div class="disc-title">Keuken (Miele)</div>
+      <div class="disc-body">HPL fronten, Dekton Albarium werkbladen, Quooker, Miele inductiekookplaat + afzuiging, oven, combioven, koelkast, wijnkast, vaatwasser.</div>
+    </div>
+    <div class="discipline-card">
+      <div class="disc-num">08</div>
+      <div class="disc-title">Badkamer & sanitair</div>
+      <div class="disc-body">Volledige inrichting via Desco (budget € 28.000 excl. btw): douchebakken, ligbad, lavabomeubels, inbouwtoiletten.</div>
+    </div>
+    <div class="discipline-card">
+      <div class="disc-num">09</div>
+      <div class="disc-title">Afwerking & extra's</div>
+      <div class="disc-body">Gashaard Hoxter ECKA + marmeren sokkel, steellookdeur, 12 binnendeuren Xinix/Invisidoor, schilderwerken buitengevel, zoldertrap Fakro.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="pricing">
+  <div class="section-title">Prijsoverzicht</div>
+  <div class="section-sub">Transparant per discipline</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('bar')">Grafisch</div>
+    <div class="tab" onclick="switchTab('table')">Tabel</div>
+  </div>
+
+  <div class="tab-panel active" id="tab-bar">
+    <div id="bars"></div>
+  </div>
+
+  <div class="tab-panel" id="tab-table">
+    <table class="price-table">
+      <thead><tr><th>Omschrijving</th><th>BTW</th><th>Bedrag</th></tr></thead>
+      <tbody id="price-rows"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section" id="payment">
+  <div class="section-title">Betalingsplan</div>
+  <div class="section-sub">Gespreid over 6 uitvoeringsfases</div>
+  <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;overflow:hidden">
+    <div class="phase-list" id="phases"></div>
+  </div>
+  <p style="font-size:12px;color:var(--color-text-secondary);margin-top:10px;padding-left:4px">Betalingstermijn: 15 dagen na factuurdatum &nbsp;·&nbsp; Boek XIX WER bij wanbetaling</p>
+</div>
+
+<div class="section" id="why">
+  <div class="section-title">Waarom Tifre?</div>
+  <div class="section-sub">Uw zekerheid van A tot Z</div>
+  <div class="usp-grid">
+    <div class="usp-card">
+      <div class="usp-icon">🛡</div>
+      <div class="usp-title">Prijszekerheid</div>
+      <div class="usp-body">Geen verrassingen. Vaste prijs gegarandeerd bij bevestiging vóór 31 maart 2026. Geen indexeringen.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">🏗</div>
+      <div class="usp-title">Één aannemer</div>
+      <div class="usp-body">Van sloopwerken tot interieuradvies: alles bij Tifre. Eén aanspreekpunt, één planning, geen coördinatieproblemen.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">✔</div>
+      <div class="usp-title">10-jarige garantie</div>
+      <div class="usp-body">Tienjarige aansprakelijkheid (Wet Peeters) bij AXA Belgium, polisnummer 720 182 104.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">🏠</div>
+      <div class="usp-title">Gratis tijdelijk verblijf</div>
+      <div class="usp-body">Tifre zorgt kosteloos voor een appartement op de Kon. Astridlaan tijdens de volledige doorlooptijd.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">⚡</div>
+      <div class="usp-title">Duurzaamheid</div>
+      <div class="usp-body">20 zonnepanelen + Huawei batterij 15 kW + warmtepomp Daikin. Uw woning klaar voor de toekomst.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">💡</div>
+      <div class="usp-title">Gratis interieuradvies</div>
+      <div class="usp-body">Onze interieurvormgever begeleidt u van opmetingen tot presentatie. Volledig inbegrepen.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="contact">
+  <div class="section-title">Volgende stappen</div>
+  <div class="section-sub">Klaar om te starten?</div>
+  <div class="contact-block">
+    <div>
+      <div class="contact-name">Michaël Burgelman</div>
+      <div class="contact-role">Project manager — Tifre BV</div>
+      <div class="contact-item"><b>+32 470 96 23 03</b></div>
+      <div class="contact-item"><b>bouw@tifre.be</b></div>
+      <div class="contact-item"><b>tifre.be</b></div>
+      <div class="contact-item" style="margin-top:8px">K. Astridlaan 24<br>9100 Sint-Niklaas</div>
+    </div>
+    <div>
+      <div class="steps-list">
+        <div class="step-row">
+          <div class="step-num s1">01</div>
+          <div class="step-text"><b>Offerte bevestigen</b><br>Onderteken voor 31/03/2026 voor prijszekerheid</div>
+        </div>
+        <div class="step-row">
+          <div class="step-num s2">02</div>
+          <div class="step-text"><b>Omgevingsvergunning</b><br>Klant vraagt aan; Tifre staat klaar bij goedkeuring</div>
+        </div>
+        <div class="step-row">
+          <div class="step-num s3">03</div>
+          <div class="step-text"><b>Startdatum vastleggen</b><br>Na vergunning plannen we gezamenlijk de fasering</div>
+        </div>
+        <div class="step-row">
+          <div class="step-num s4">04</div>
+          <div class="step-text"><b>Oplevering</b><br>Uw gerenoveerde woning, turnkey afgeleverd</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const priceData = [
+  ["Voorbereidende werken","6%",23543],
+  ["Constructieve werken","6%",19984],
+  ["Riolering + putten","6%",11912],
+  ["Betonplaat","6%",4687],
+  ["Houtskeletconstructie","6%",11177],
+  ["Plat dak","6%",5925],
+  ["Velux dakvensters (3 st.)","6%",4293],
+  ["Gevel- & snelbouwsteen","6%",6391],
+  ["Dorpels","6%",4901],
+  ["Buitenschrijnwerk Reynaers","6%",68504],
+  ["Gevelbekleding aluminium","6%",13878],
+  ["Elektriciteit vernieuwen","6%",16021],
+  ["Zonnepanelen + batterij","6%",20593],
+  ["Sanitaire leidingen","6%",12213],
+  ["Ventilatiesysteem type D","6%",16069],
+  ["Bezettingswerken","6%",21372],
+  ["PUR isolatie + noppenplaat","6%",10017],
+  ["Warmtepomp vloerverwarming","6%",27824],
+  ["Anhydriet chape","6%",7466],
+  ["Gipskarton + vals plafond","6%",21632],
+  ["Wandtegels","6%",23696],
+  ["Vloertegels","6%",32632],
+  ["Parketvloer","6%",26955],
+  ["Haard + ombouw","6%",18171],
+  ["Badkamerinrichting","6%",34750],
+  ["Keukenmeubelen & werkbladen","6%",40127],
+  ["Keukentoestellen (Miele)","21%",13652],
+  ["Steellookdeur","6%",4919],
+  ["Binnendeuren (12 st.)","6%",7897],
+  ["Schilderwerken buitengevel","6%",23704],
+  ["Afvoer bouwafval","6%",6623],
+  ["Werfinrichting","6%",387],
+  ["Attest tienjarige aansprakelijkheid","21%",1032],
+  ["Commerciële korting","6%",-67277],
+];
+
+const fmt = n => (n<0?'- ':'') + '€ ' + Math.abs(n).toLocaleString('nl-BE');
+
+const tbody = document.getElementById('price-rows');
+priceData.forEach(([desc,btw,amt]) => {
+  const tr = document.createElement('tr');
+  if(desc==='Commerciële korting') tr.className='discount';
+  tr.innerHTML = `<td>${desc}</td><td>${btw}</td><td>${fmt(amt)}</td>`;
+  tbody.appendChild(tr);
+});
+const totalsData = [
+  ['BTW 6% (renovatiewerken)','','€ 29.119',''],
+  ['BTW 21% (toestellen)','','€ 3.084',''],
+];
+totalsData.forEach(([d,b,a])=>{
+  const tr=document.createElement('tr');
+  tr.className='total';
+  tr.innerHTML=`<td colspan="2">${d}</td><td>${a}</td>`;
+  tbody.appendChild(tr);
+});
+const trtm=document.createElement('tr');
+trtm.className='total-main';
+trtm.innerHTML='<td colspan="2">Totaal incl. BTW</td><td>€ 532.203</td>';
+tbody.appendChild(trtm);
+
+const groups = [
+  {label:'Ruwbouw & constructie',val:75158,color:'#00AEEF'},
+  {label:'Buitenschrijnwerk',val:82382,color:'#005F8E'},
+  {label:'Keuken & badkamer',val:88530,color:'#FF6B35'},
+  {label:'Vloer & wandafwerking',val:83284,color:'#00AEEF'},
+  {label:'Technieken (elektr/sanit/vent)',val:45303,color:'#005F8E'},
+  {label:'Warmtepomp + vloerverwarming',val:27824,color:'#00AEEF'},
+  {label:'Zonnepanelen + batterij',val:20593,color:'#FF6B35'},
+  {label:'Afwerking & overige',val:77186,color:'#8FA3B1'},
+];
+const maxVal = Math.max(...groups.map(g=>g.val));
+const barsDiv = document.getElementById('bars');
+groups.forEach(g=>{
+  const pct = Math.round(g.val/maxVal*100);
+  barsDiv.innerHTML += `<div class="bar-row">
+    <div class="bar-label">${g.label}</div>
+    <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${g.color}"></div></div>
+    <div class="bar-val">${fmt(g.val)}</div>
+  </div>`;
+});
+
+const phases = [
+  {num:'01',name:'Voorschot bij bevestiging',desc:'Vóór start werken',amt:'50.000',pct:'10%',accent:true},
+  {num:'02',name:'Start ruwbouw & constructie',desc:'Na vergunning, start werf',amt:'100.000',pct:'20%'},
+  {num:'03',name:'Technieken',desc:'Elektriciteit, sanitair, warmtepomp',amt:'125.000',pct:'25%'},
+  {num:'04',name:'Buitenschrijnwerk & gevels',desc:'Na plaatsing schrijnwerk',amt:'100.000',pct:'20%'},
+  {num:'05',name:'Afwerking',desc:'Vloer, wandtegels, parket, plafond',amt:'75.000',pct:'15%'},
+  {num:'06',name:'Keuken, badkamer & oplevering',desc:'Definitieve oplevering',amt:'50.000',pct:'10%'},
+];
+const phDiv = document.getElementById('phases');
+phases.forEach(p=>{
+  const bg = p.accent ? 'var(--orange)' : 'var(--blue)';
+  phDiv.innerHTML += `<div class="phase-row">
+    <div class="phase-num" style="background:${bg}">${p.num}</div>
+    <div><div class="phase-name">${p.name}</div><div class="phase-desc">${p.desc}</div></div>
+    <div><div class="phase-amt">€ ${p.amt}</div><div class="phase-pct">${p.pct}</div></div>
+  </div>`;
+});
+
+function switchTab(which){
+  document.querySelectorAll('.tab').forEach((t,i)=>{t.classList.toggle('active',['bar','table'][i]===which)});
+  document.getElementById('tab-bar').classList.toggle('active',which==='bar');
+  document.getElementById('tab-table').classList.toggle('active',which==='table');
+}
+
+function scrollTo(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active', a.getAttribute('href')==='#'+id);
+  });
+}
+
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',e=>{e.preventDefault();});
+});
+</script>
